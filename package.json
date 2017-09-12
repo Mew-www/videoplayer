@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "videoplayer",
+  "description": "School project",
+  "version": "1.0.0",
+  "author": "Mew, Jasmiinv",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mew-www/videoplayer.git"
+  },
+  "homepage": "https://github.com/Mew-www/videoplayer#readme",
+  "bugs": {
+    "url": "https://github.com/Mew-www/videoplayer/issues"
+  }
+}

@@ -15,5 +15,8 @@
   "homepage": "https://github.com/Mew-www/videoplayer#readme",
   "bugs": {
     "url": "https://github.com/Mew-www/videoplayer/issues"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

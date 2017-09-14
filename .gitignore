@@ -4,3 +4,5 @@
 # npm modules
 /node_modules/
 
+# Dist files
+/distribution/

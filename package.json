@@ -17,6 +17,7 @@
     "url": "https://github.com/Mew-www/videoplayer/issues"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
   }
 }

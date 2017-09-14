@@ -1,0 +1,6 @@
+# Editor files
+.idea/
+
+# npm modules
+/node_modules/
+

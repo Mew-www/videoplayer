@@ -29,7 +29,7 @@ gulp.task('javascript', function() {
   return gulp.src('sources/js/**/*.js')
     // ES Lint here or after concat
     .pipe(concatenate('bundle.min.js')) // Bundle javascript
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('distribution'))
     .on('end', browsersync.reload);
 });

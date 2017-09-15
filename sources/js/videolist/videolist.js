@@ -1,12 +1,11 @@
-let pdfFilesDirectory = '/uploads/pdf/';
 
 // get auto-generated page
-$.ajax({url: pdfFilesDirectory}).then(function(html) {
+$.get('http://62.78.180.5/streamprojekti/').then(function(html) {
     // create temporary DOM element
    let document = $(html);
 
     // find all links ending with .pdf
-    document.find('a[href$=.pdf]').each(function() {
+    document.find('a[href$=".wov"]').each(function() {
         let pdfName = $(this).text();
         let pdfUrl = $(this).attr('href');
 

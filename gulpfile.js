@@ -16,7 +16,6 @@ const ESLINT_RULES = {
    */
 
   // (0) ALLOW THESE CASES
-  'no-await-in-loop': 0, // TODO review
   'no-console': 0, // ALLOW using console.log(), these settings are for BOTH development AND "production" environment
   'no-constant-condition': 0, // ALLOW "if (true)" and similar
   'no-control-regex': 0, // If someone uses control chars like /\x1f/ inside regex, presume they have a reason
@@ -30,6 +29,7 @@ const ESLINT_RULES = {
                     // MAY CHANGE if we start using JSDoc.
 
   // (1) WARN BUT CONTINUE BUILD IN THESE CASES
+  'no-await-in-loop': 1, // Warn but let (reasonless) looped await calls be
   'for-direction': 1, // Warn but if intended infinite-loop, let it be
   'no-empty': 1, // Warn but if intended "if(something) {  }" let it be; Do not require a comment
   'no-extra-parens': 1, // Warn but permit "let calc = 6 - (2*3);"
@@ -91,13 +91,13 @@ const ESLINT_RULES = {
   /*
    * (DEFAULT DEFINED) RULES ON ECMASCRIPT2015/ES6 SPECIFIC THINGIES
    */
-  'constructor-super': 0, // TODO review
-  'no-class-assign': 0, // TODO review
-  'no-const-assign': 0, // TODO review
-  'no-dupe-class-members': 0, // TODO review
-  'no-new-symbol': 0, // TODO review
-  'no-this-before-super': 0, // TODO review
-  'require-yield': 0 // TODO review
+  'constructor-super': 2, // Stop; Use super() when using "extends", do not use it when not extending. Force these cases.
+  'no-class-assign': 1, // Warn, when assigning something else into a class e.g. "class A { }; A = 0;"
+  'no-const-assign': 2, // Stop, no overriding const variables even if ES6/ES2015 may permit doing it.
+  'no-dupe-class-members': 2, // Stop, no duplicate class members (properties or methods)
+  'no-new-symbol': 2, // Stop, Symbol() is not meant to be called with new (and likely throws a type error).
+  'no-this-before-super': 2, // Stop, no using this -keyword in constructor before super() -call. Superclass -> subclass.
+  'require-yield': 2 // Stop, *generator functions should "yield" result(s) at some point, or they should not be generators.
 };
 
 gulp.task('html', function () {

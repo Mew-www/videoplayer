@@ -7,6 +7,10 @@ const browsersync = require('browser-sync').create();
 const eslint = require('gulp-eslint');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
+const order = require('gulp-order');
+const filter = require('gulp-filter');
+const rename = require('gulp-rename');
+const mergestream = require('merge-stream');
 
 const ESLINT_RULES = {
   // For reference including all possible rules, and (if any) their sub-options, see https://eslint.org/docs/rules/
@@ -121,7 +125,11 @@ gulp.task('sass-css', function(){
 });
 
 gulp.task('javascript', function() {
-  return gulp.src('sources/js/**/*.js')
+  // Create alias for "everything-except-main.js" (to "libraries.js") and (just rename "sources/js/main.js" to) "main.js"
+  let libjs = gulp.src('sources/js/**/*.js').pipe(filter(['**', '!sources/js/main.js'])).pipe(concatenate('libraries.js'));
+  let mainjs = gulp.src('sources/js/main.js').pipe(rename('main.js'));
+  return mergestream(libjs, mainjs)
+    .pipe(order(['libraries.js', 'main.js']))
     .pipe(eslint({
       envs: ['browser', 'es6'],
       globals: ['jQuery', '$'],

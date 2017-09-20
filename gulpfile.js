@@ -125,7 +125,10 @@ gulp.task('javascript', function() {
     .pipe(eslint({
       envs: ['browser', 'es6'],
       globals: ['jQuery', '$'],
-      rules: ESLINT_RULES
+      rules: ESLINT_RULES,
+      parserOptions: {
+        sourceType: "module",
+      }
     })).pipe(eslint.format()).pipe(eslint.failAfterError())
     .pipe(babel({presets: ['es2015']}))
     .pipe(concatenate('bundle.min.js')) // Bundle javascript

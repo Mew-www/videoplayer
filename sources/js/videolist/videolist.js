@@ -20,10 +20,13 @@
 
 
         for(let i = 0; i < listing.length; i++) {
-            console.log(listing[i].name);
-            console.log(listing[i]);
-       
+            /*console.log(listing[i].name);
+            console.log(listing[i]);*/
+
+            $("#videolist").append(listing[i].name, [2] ); //näkyy kaikki leffat
+               // "</li><li>jotain2</li></ol>");
+
         }
-        console.log(listing[2]);
-        $("#videolist").html("<ol><li>jotain</li><li>jotain2</li></ol>");
+        //console.log(listing[2]);
+       // $("#videolist").append("<ol><li>"[i]"</li><li>jotain2</li></ol>");
     });

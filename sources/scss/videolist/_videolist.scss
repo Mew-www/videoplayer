@@ -2,3 +2,16 @@
   background: #5bc0de;
   color: red;
 }
+
+.movie-wrapper:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.movie-element{
+
+  float: left;
+  width:250px;
+  height:100px;
+}

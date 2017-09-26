@@ -1,6 +1,7 @@
 
     let listing = [];
-// get auto-generated page
+
+     // get auto-generated page
     $.get('http://62.78.180.5/streamprojekti/').then(function (html) {
         // create tempovrary DOM element
         let document = $(html);
@@ -9,12 +10,22 @@
             // console.log($(this).attr("href"));
             //console.log($(this).parent().next().html());
             //console.log($(this).parent().next().next().html());
+             //slice pilko alaviiva ja piste lopusta eli (kaikki paitsi viimeinen)
+            let splitter1 = $(this).attr("href").split("-");
+            let joining1 = splitter1.join(" ");
+            console.log(joining1);
+
             let movie = {
-                name: $(this).attr("href"),
+                name: joining1,
                 last_modified: $(this).parent().next().html(),
                 size: $(this).parent().next().next().html()
             };
             listing.push(movie);
+
+
+
+
+
 
         });
 
@@ -23,8 +34,9 @@
 
 
         for(let i = 0; i < listing.length; i++) {
-            console.log(listing[i].name);
+           /* console.log(listing[i].name);
             console.log(listing[i]);
+            */
 
 
             div1.append("<div class='movie-element'>"+
@@ -36,6 +48,7 @@
 
         }
 
+        //let splitter = listing.split("-");
 
         //näkyy kaikki leffat
                // "</li><li>jotain2</li></ol>");

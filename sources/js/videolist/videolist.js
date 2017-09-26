@@ -1,4 +1,5 @@
 
+
     let listing = [];
 
      // get auto-generated page
@@ -10,21 +11,29 @@
             // console.log($(this).attr("href"));
             //console.log($(this).parent().next().html());
             //console.log($(this).parent().next().next().html());
-             //slice pilko alaviiva ja piste lopusta eli (kaikki paitsi viimeinen)
-            let splitter1 = $(this).attr("href").split("-");
-            let joining1 = splitter1.join(" ");
-            console.log(joining1);
+            //let slicer = splitter1.slice(1, 5); //slice pilko alaviiva ja piste lopusta eli (kaikki paitsi viimeinen)
+            let filename = $(this).attr("href");
+            let splitter1 = filename.split("-");
+            let slicer = splitter1.slice(0,-1);
+            let title = slicer.join(" ");
+           // console.log(title);
+            console.log(slicer);
 
-            let movie = {
-                name: joining1,
-                last_modified: $(this).parent().next().html(),
-                size: $(this).parent().next().next().html()
-            };
+            let finder = listing.find(function (movie_item) {
+                movie_item.title === title;
+            });
+
+
+            let movie = new Movie(
+                title,
+                filename,
+                [
+                    {file: filename, label: "asd" }
+                ],
+                $(this).parent().next().html(),
+                $(this).parent().next().next().html()
+            );
             listing.push(movie);
-
-
-
-
 
 
         });
@@ -40,7 +49,7 @@
 
 
             div1.append("<div class='movie-element'>"+
-                    listing[i].name +
+                    listing[i].title +
                     "<div class='movie-info'>" + listing[i].last_modified + "</div>" +
                 "</div>");
             //$("#videolist").append( listing[i].name );

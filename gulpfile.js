@@ -126,10 +126,11 @@ gulp.task('sass-css', function(){
 
 gulp.task('javascript', function() {
   // Create alias for "everything-except-main.js" (to "libraries.js") and (just rename "sources/js/main.js" to) "main.js"
-  let libjs = gulp.src('sources/js/**/*.js').pipe(filter(['**', '!sources/js/main.js'])).pipe(concatenate('libraries.js'));
+  let modelsjs = gulp.src('sources/js/models.js').pipe(rename('models.js'));
+  let libjs = gulp.src('sources/js/**/*.js').pipe(filter(['**', '!sources/js/main.js', '!sources/js/models.js'])).pipe(concatenate('libraries.js'));
   let mainjs = gulp.src('sources/js/main.js').pipe(rename('main.js'));
-  return mergestream(libjs, mainjs)
-    .pipe(order(['libraries.js', 'main.js']))
+  return mergestream(modelsjs, libjs, mainjs)
+    .pipe(order(['models.js', 'libraries.js', 'main.js']))
     .pipe(eslint({
       envs: ['browser', 'es6'],
       globals: ['jQuery', '$'],

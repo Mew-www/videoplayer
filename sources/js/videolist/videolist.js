@@ -62,12 +62,15 @@ function get_movies(callback){
 
 
 }
-function create_clickable_object(movie, callback) {
+function create_clickable_object(movie, play_callback, add_fav_callback) {
 
+    let favourite_button = $("<button>Add to favourites</button>").on("click", (e)=>{e.preventDefault(); e.stopPropagation(); add_fav_callback()});
     let movie_object = $("<div class='movie-element'>" +
-        movie.title +
-        "<div class='movie-info'>" + movie.last_modified + "</div>" +
-        "</div>").on("click",callback);
+            movie.title +
+            "<div class='movie-info'>" + movie.last_modified + "</div>" +
+            "<div class='movie-favourite-wrapper'></div>" +
+        "</div>").on("click", play_callback);
+    movie_object.find(".movie-favourite-wrapper").append(favourite_button);
 
     $('.movie-wrapper').append(movie_object);
 

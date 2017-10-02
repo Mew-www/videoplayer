@@ -2,3 +2,19 @@
 @import 'videolist/_videolist.scss';
 @import 'videoplayer/_videoplayer.scss';
 @import 'videofavourites/_videofavourites.scss';
+
+.side-by-side {
+  display: table;
+  margin: 0 auto;
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+  #videoplayer {
+    float: left;
+  }
+  #favourites-bar {
+    float: left;
+  }
+}

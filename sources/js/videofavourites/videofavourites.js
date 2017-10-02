@@ -9,8 +9,19 @@ class Favourites {
   }
 
   addFavourite(movie, click_callback) {
+    // If exists -> early return (NOP)
+    if (this.movies.find(existing_movie => existing_movie.title === movie.title)) {
+      return;
+    }
+
+    // Add to model
     this.movies.push(movie);
+    // Generate UI component
     this.generateFavouriteComponent(movie, click_callback);
+    // Persist
+    let saved_favourite_titles = localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
+    saved_favourite_titles.push(movie.title);
+    localStorage.setItem('favourites', JSON.stringify(saved_favourite_titles));
   }
 
   generateFavouriteComponent(movie, click_callback) {

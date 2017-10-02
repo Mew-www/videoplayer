@@ -1,13 +1,23 @@
+// Asynchronously HTTP GET movies listing
 get_movies(function(listing) {
   let player = new Player(window.jwplayer('videoplayer'), [listing[0]]);
 
-  for (let i=0; i<listing.length; i++) {
-    create_clickable_object(listing[i], function(){player.play(listing[i]);});
+  // Create favourites holder -object (localStorage -> filter (not-in-listing))
+  let favourites = new Favourites(listing);
+
+  // Generate favourites list (side-bar)
+  for (let i=0; i<favourites.movies.length; i++) {
+    let playVideoFn = () => {player.play(listing[i])};
+    favourites.generateFavouriteComponent(favourites.movies[i], playVideoFn);
   }
 
-  let favs = new Favourites(listing);
-  favs.addFavourite(listing[3], ()=>{player.play(listing[3]);})
+  // Generate video list (top-bar)
+  for (let i=0; i<listing.length; i++) {
+    let playVideoFn = () => {player.play(listing[i])};
+    create_clickable_object(listing[i], playVideoFn, ()=>{favourites.addFavourite(listing[i], playVideoFn)});
+  }
 
+  // Add movie theatre -like transitions to background
   player.jwplayer.on('play', ()=>{$("body").css('background', "black");});
   player.jwplayer.on('pause', ()=>{$("body").css('background', "white");});
 });

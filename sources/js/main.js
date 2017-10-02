@@ -7,7 +7,7 @@ get_movies(function(listing) {
 
   // Generate favourites list (side-bar)
   for (let i=0; i<favourites.movies.length; i++) {
-    let playVideoFn = () => {player.play(listing[i])};
+    let playVideoFn = () => {player.play(favourites.movies[i])};
     favourites.generateFavouriteComponent(favourites.movies[i], playVideoFn);
   }
 

@@ -25,7 +25,7 @@ class Favourites {
   }
 
   generateFavouriteComponent(movie, click_callback) {
-    let fav_component = $('<div>'+movie.title+'</div>').on('click', click_callback);
+    let fav_component = $('<div class="favourite-movie">'+movie.title+'</div>').on('click', click_callback);
     this.parent_div.append(fav_component);
   }
 

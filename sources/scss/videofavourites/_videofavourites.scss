@@ -1,0 +1,8 @@
+.favourite-movie {
+  font-family: "IndieFlower", sans-serif;
+  cursor: pointer;
+  &:before {
+    content: "* ";
+    cursor: default;
+  }
+}

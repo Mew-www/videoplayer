@@ -20,22 +20,38 @@
             console.log(slicer);
 
             let finder = listing.find(function (movie_item) {
-                movie_item.title === title;
+                //luuppa ja lisää sourseen jos on
+
+                if (movie_item.title === title) {
+
+                    return true;
+
+                }
+                else {
+                    return false;
+                }
             });
 
+            if(finder)
+            {
+                finder.sources.push({file: filename, label: "asd"})
+            }
 
-            let movie = new Movie(
-                title,
-                filename,
-                [
-                    {file: filename, label: "asd" }
-                ],
-                $(this).parent().next().html(),
-                $(this).parent().next().next().html()
-            );
-            listing.push(movie);
+            else {
 
 
+                let movie = new Movie(
+                    title,
+                    filename,
+                    [
+                        {file: filename, label: "asd"}
+                    ],
+                    $(this).parent().next().html(),
+                    $(this).parent().next().next().html()
+                );
+                listing.push(movie);
+
+            }
         });
 
         let div1 = $( "<div class='movie-wrapper'></div>" );

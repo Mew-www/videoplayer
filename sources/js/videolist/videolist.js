@@ -42,7 +42,7 @@ function get_movies(callback){
                     title,
                     filename,
                     [
-                        {file: filename, label: "asd"}
+                        {file: 'http://62.78.180.5/streamprojekti/' + filename, label: "asd"}
                     ],
                     $(this).parent().next().html(),
                     $(this).parent().next().next().html()

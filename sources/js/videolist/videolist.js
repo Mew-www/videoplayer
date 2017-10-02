@@ -56,25 +56,21 @@ function get_movies(callback){
         $("#videolist").append(div1);
 
 
-        for (let i = 0; i < listing.length; i++) {
-            /* console.log(listing[i].name);
-             console.log(listing[i]);
-             */
-
-
-            div1.append("<div class='movie-element'>" +
-                listing[i].title +
-                "<div class='movie-info'>" + listing[i].last_modified + "</div>" +
-                "</div>");
-
-
-        }
-
-
 
         callback(listing);
 
     });
+
+
+}
+function create_clickable_object(movie, callback) {
+
+    let movie_object = $("<div class='movie-element'>" +
+        movie.title +
+        "<div class='movie-info'>" + movie.last_modified + "</div>" +
+        "</div>").on("click",callback());
+
+    $('.movie-wrapper').append(movie_object);
 
 
 }

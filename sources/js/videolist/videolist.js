@@ -1,8 +1,8 @@
 
-
+function get_movies(){
     let listing = [];
 
-     // get auto-generated page
+    // get auto-generated page
     $.get('http://62.78.180.5/streamprojekti/').then(function (html) {
         // create tempovrary DOM element
         let document = $(html);
@@ -14,9 +14,9 @@
             //let slicer = splitter1.slice(1, 5); //slice pilko alaviiva ja piste lopusta eli (kaikki paitsi viimeinen)
             let filename = $(this).attr("href");
             let splitter1 = filename.split("-");
-            let slicer = splitter1.slice(0,-1);
+            let slicer = splitter1.slice(0, -1);
             let title = slicer.join(" ");
-           // console.log(title);
+            // console.log(title);
             console.log(slicer);
 
             let finder = listing.find(function (movie_item) {
@@ -32,8 +32,7 @@
                 }
             });
 
-            if(finder)
-            {
+            if (finder) {
                 finder.sources.push({file: filename, label: "asd"})
             }
 
@@ -54,19 +53,19 @@
             }
         });
 
-        let div1 = $( "<div class='movie-wrapper'></div>" );
+        let div1 = $("<div class='movie-wrapper'></div>");
         $("#videolist").append(div1);
 
 
-        for(let i = 0; i < listing.length; i++) {
-           /* console.log(listing[i].name);
-            console.log(listing[i]);
-            */
+        for (let i = 0; i < listing.length; i++) {
+            /* console.log(listing[i].name);
+             console.log(listing[i]);
+             */
 
 
-            div1.append("<div class='movie-element'>"+
-                    listing[i].title +
-                    "<div class='movie-info'>" + listing[i].last_modified + "</div>" +
+            div1.append("<div class='movie-element'>" +
+                listing[i].title +
+                "<div class='movie-info'>" + listing[i].last_modified + "</div>" +
                 "</div>");
             //$("#videolist").append( listing[i].name );
 
@@ -76,9 +75,12 @@
         //let splitter = listing.split("-");
 
         //näkyy kaikki leffat
-               // "</li><li>jotain2</li></ol>");
+        // "</li><li>jotain2</li></ol>");
 
 
         //console.log(listing[2]);
-       // $("#videolist").append("<ol><li>"[i]"</li><li>jotain2</li></ol>");
+     return listing;   // $("#videolist").append("<ol><li>"[i]"</li><li>jotain2</li></ol>");
     });
+
+    
+}

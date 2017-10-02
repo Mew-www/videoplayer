@@ -12,7 +12,7 @@ class Player {
     jwplayer.setup({
       height: 360,
       width: 640,
-      file: list_of_movies[0].sources.find(source=>source.label==="Full HD").file,
+      file: list_of_movies[0].sources[0].file,
       title: list_of_movies[0].title,
       description: list_of_movies[0].description
     });
@@ -26,14 +26,3 @@ class Player {
   }
 
 }
-
-let movielist = [1,2,3,4,5].map(num => new Movie(
-  "american-made-trailer-1_h1080p.mov",
-  "This has lots of kittens in it!", [
-    {file: 'http://62.78.180.5/streamprojekti/american-made-trailer-1_h1080p.mov', label: 'Full HD'},
-    {file: 'http://62.78.180.5/streamprojekti/american-made-trailer-1_h480p.mov', label: 'Low quality'}
-  ])
-);
-let player = new Player(window.jwplayer('videoplayer'), movielist);
-player.jwplayer.on('play', ()=>{$("body").css('background', "black");});
-player.jwplayer.on('pause', ()=>{$("body").css('background', "white");});

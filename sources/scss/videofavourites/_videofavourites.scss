@@ -1,4 +1,12 @@
+#favourites-bar {
+  margin-top: 30px;
+  padding: 4px;
+  background: white;
+  border: 2px ridge black;
+}
+
 .favourite-movie {
+  color: red;
   font-family: "IndieFlower", sans-serif;
   cursor: pointer;
   &:before {
@@ -8,7 +16,11 @@
 }
 
 .favourite-removal-btn {
-  padding: 0;
+  padding: 1px;
   margin-left: 0.33em;
   line-height: 1em;
+  position: relative;
+  top: -2px;
+  @extend .btn;
+  @extend .btn-warning;
 }

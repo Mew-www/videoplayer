@@ -68,7 +68,7 @@ function create_clickable_object(movie, callback) {
     let movie_object = $("<div class='movie-element'>" +
         movie.title +
         "<div class='movie-info'>" + movie.last_modified + "</div>" +
-        "</div>").on("click",callback());
+        "</div>").on("click",callback);
 
     $('.movie-wrapper').append(movie_object);
 

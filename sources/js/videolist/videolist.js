@@ -16,6 +16,7 @@ function get_movies(callback){
             let splitter1 = filename.split("-");
             let slicer = splitter1.slice(0, -1);
             let title = slicer.join(" ");
+
             console.log(slicer);
 
             let finder = listing.find(function (movie_item) {
@@ -31,18 +32,16 @@ function get_movies(callback){
                 }
             });
 
+            let resolution =  (filename.indexOf("h1080p")>-1) ? "Full HD" : "Low Quality";
             if (finder) {
-                finder.sources.push({file: 'http://62.78.180.5/streamprojekti/' + filename, label: "asd"})
-            }
-
-            else {
-
+                finder.sources.push({file: 'http://62.78.180.5/streamprojekti/' + filename, label: resolution})
+            } else {
 
                 let movie = new Movie(
                     title,
                     filename,
                     [
-                        {file: 'http://62.78.180.5/streamprojekti/' + filename, label: "asd"}
+                        {file: 'http://62.78.180.5/streamprojekti/' + filename, label: resolution}
                     ],
                     $(this).parent().next().html(),
                     $(this).parent().next().next().html()

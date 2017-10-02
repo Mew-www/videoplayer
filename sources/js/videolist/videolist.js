@@ -32,7 +32,7 @@ function get_movies(callback){
             });
 
             if (finder) {
-                finder.sources.push({file: filename, label: "asd"})
+                finder.sources.push({file: 'http://62.78.180.5/streamprojekti/' + filename, label: "asd"})
             }
 
             else {

@@ -11,6 +11,7 @@ const order = require('gulp-order');
 const filter = require('gulp-filter');
 const rename = require('gulp-rename');
 const mergestream = require('merge-stream');
+const font2css = require('gulp-font2css').default;
 
 const ESLINT_RULES = {
   // For reference including all possible rules, and (if any) their sub-options, see https://eslint.org/docs/rules/
@@ -111,7 +112,11 @@ gulp.task('html', function () {
 });
 
 gulp.task('sass-css', function(){
-  return gulp.src('sources/scss/**/*.scss')
+  let fontcss = gulp.src('sources/scss/fonts/**/*.{otf,ttf,woff,woff2}')
+    .pipe(font2css())
+    .pipe(concatenate('fonts.css'));
+
+  let stylecss = gulp.src('sources/scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'})) // Minify aswell
     .pipe(autoprefixer({
       add: true,
@@ -119,6 +124,10 @@ gulp.task('sass-css', function(){
       cascade: false, // SASS is already minified so do not cascade
       browsers: ['last 2 versions', '> 1%', 'Firefox ESR'] // http://browserl.ist/?q=last+2+versions%2C+%3E+1%25%2C+Firefox+ESR
     }))
+    .pipe(concatenate('styles.css'));
+
+  return mergestream(fontcss, stylecss)
+    .pipe(order(['fonts.css', 'styles.css']))
     .pipe(concatenate('bundle.min.css')) // Bundle css
     .pipe(gulp.dest('distribution'))
     .pipe(browsersync.reload({stream: true}));

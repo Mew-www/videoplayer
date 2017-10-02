@@ -24,9 +24,17 @@ class Favourites {
     localStorage.setItem('favourites', JSON.stringify(saved_favourite_titles));
   }
 
+  removeFavourite(component, movie) {
+    this.movies = this.movies.filter(existing_movie => existing_movie.title !== movie.title);
+    component.remove();
+  }
+
   generateFavouriteComponent(movie, click_callback) {
+    let remove_fav_button = $('<button class="favourite-removal-btn">remove</button>');
     let fav_component = $('<div class="favourite-movie">'+movie.title+'</div>').on('click', click_callback);
+    fav_component.append(remove_fav_button);
     this.parent_div.append(fav_component);
+    remove_fav_button.on('click', ()=>{this.removeFavourite(fav_component, movie)});
   }
 
 }

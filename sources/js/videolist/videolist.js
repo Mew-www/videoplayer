@@ -1,5 +1,5 @@
 
-function get_movies(){
+function get_movies(callback){
     let listing = [];
 
     // get auto-generated page
@@ -16,7 +16,6 @@ function get_movies(){
             let splitter1 = filename.split("-");
             let slicer = splitter1.slice(0, -1);
             let title = slicer.join(" ");
-            // console.log(title);
             console.log(slicer);
 
             let finder = listing.find(function (movie_item) {
@@ -67,20 +66,15 @@ function get_movies(){
                 listing[i].title +
                 "<div class='movie-info'>" + listing[i].last_modified + "</div>" +
                 "</div>");
-            //$("#videolist").append( listing[i].name );
 
 
         }
 
-        //let splitter = listing.split("-");
-
-        //näkyy kaikki leffat
-        // "</li><li>jotain2</li></ol>");
 
 
-        //console.log(listing[2]);
-     return listing;   // $("#videolist").append("<ol><li>"[i]"</li><li>jotain2</li></ol>");
+        callback(listing);
+
     });
 
-    
+
 }

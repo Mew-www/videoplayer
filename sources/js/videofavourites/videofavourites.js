@@ -27,6 +27,9 @@ class Favourites {
   removeFavourite(component, movie) {
     this.movies = this.movies.filter(existing_movie => existing_movie.title !== movie.title);
     component.remove();
+    let saved_favourite_titles = localStorage.getItem('favourites') ? JSON.parse(localStorage.getItem('favourites')) : [];
+    saved_favourite_titles = saved_favourite_titles.filter(existing_title => existing_title !== movie.title);
+    localStorage.setItem('favourites', JSON.stringify(saved_favourite_titles));
   }
 
   generateFavouriteComponent(movie, click_callback) {

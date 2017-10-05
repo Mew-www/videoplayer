@@ -13,7 +13,8 @@ function get_movies(callback){
             //console.log($(this).parent().next().next().html());
             //let slicer = splitter1.slice(1, 5); //slice pilko alaviiva ja piste lopusta eli (kaikki paitsi viimeinen)
             let filename = $(this).attr("href");
-            let splitter1 = filename.split("-");
+            let firstletter = filename.substr(0,1).toUpperCase()+filename.substr(1);
+            let splitter1 = firstletter.split("-");
             let slicer = splitter1.slice(0, -1);
             let title = slicer.join(" ");
 

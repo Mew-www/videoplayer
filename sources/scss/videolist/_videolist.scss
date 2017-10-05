@@ -3,11 +3,6 @@
   background: url(http://users.metropolia.fi/~jasmiinv/tausta.png);
   color: white;
 
-  @font-face {
-    font-family: "TallFilm";
-    src: url("../fonts/Tall Film/TallFilm-bold.ttf");
-  font-size: 20px;
-  }
 }
 
 .movie-wrapper:after {
@@ -16,6 +11,11 @@
   clear: both;
 
 }
+@font-face {
+  font-family: "TallFilm";
+  src: url("../fonts/Tall Film/TallFilm-bold.ttf");
+  font-weight: 800;
+}
 
 .movie-element{
 
@@ -23,5 +23,6 @@
   width:250px;
   height:100px;
   font-family: TallFilm;
+  font-size: 21px;
 
 }
